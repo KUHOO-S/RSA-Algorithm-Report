@@ -1,43 +1,47 @@
-
-from decimal import Decimal 
-
 def gcd(a,b): 
 	if b==0: 
 		return a 
 	else: 
 		return gcd(b,a%b) 
+print("\nWelcom to RSA IMPLEMENTATION\n")
+
 p = int(input('Enter the value of p = ')) 
-q = int(input('Enter the value of q = ')) 
-String = input('Enter the value of text = ') 
-print(String)
+q = int(input('\nEnter the value of q = ')) 
+String = input('\nEnter the value of text = ') 
+
 l=[]
+
 ciphertextlist =[]
 deciphertextlist=[] 
 for i in String:
     l.append(ord(i))
-print(l) 
+print(l)
+n = p*q 
+t = (p-1)*(q-1) 
+
+for e in range(2,t): 
+    if gcd(e,t)== 1: 
+        break
+
+for i in range(1,10): 
+    x = 1 + i*t 
+    if x % e == 0: 
+        d = int(x/e) 
+        break
+  
+print('\nn = '+str(n)+'\n\ne = '+str(e)+'\n\nt = '+str(t)+'\n\nd = '+str(d)+'\n\ninput(data) ==>'+String+'\n\n')
 for data in l:   
 
-    n = p*q 
-    t = (p-1)*(q-1) 
-
-    for e in range(2,t): 
-        if gcd(e,t)== 1: 
-            break
-
-
-    for i in range(1,10): 
-        x = 1 + i*t 
-        if x % e == 0: 
-            d = int(x/e) 
-            break
-  
-    ct = pow(data,e) % n 
-    ciphertextlist.append(chr(ct))
+    Sig = pow(data,e) % n 
+    ciphertextlist.append(chr(Sig))
         
-    dt = pow(ct,d) % n 
-    deciphertextlist.append(chr(dt))
+    Message = pow(Sig,d) % n 
+    deciphertextlist.append(chr(Message))
     
-    print('n = '+str(n)+' e = '+str(e)+' t = '+str(t)+' d = '+str(d)+' cipher text = '+str(ct)+' decrypted text = '+str(dt)) 
-print(ciphertextlist)
-print(deciphertextlist)
+    print(' cipher text = '+str(Sig)+' decrypted text = '+str(Message)) 
+print("\nFinal Cipher Text (Sig)= ")
+print(''.join(ciphertextlist))
+print("\nFinal Deciphered Text (Message)= ")
+print(''.join(deciphertextlist))
+if(Message==data):
+    print('message==data hence signature and data is accepted')
