@@ -1,9 +1,18 @@
+from art import *
 def gcd(a,b): 
 	if b==0: 
 		return a 
 	else: 
 		return gcd(b,a%b) 
-print("\nWelcom to RSA IMPLEMENTATION\n")
+tprint("\nWelcom to RSA IMPLEMENTATION\n")
+print("Enter the message you want to encrypt")
+
+a =60
+b = 9
+a+b
+
+print("kuhoe")
+
 
 p = int(input('Enter the value of p = ')) 
 q = int(input('\nEnter the value of q = ')) 
@@ -41,7 +50,8 @@ for data in l:
     print(' cipher text = '+str(Sig)+' decrypted text = '+str(Message)) 
 print("\nFinal Cipher Text (Sig)= ")
 print(''.join(ciphertextlist))
-print("\nFinal Deciphered Text (Message)= ")
+tprint("\nFinal Deciphered Text (Message)= ")
+print("This is the original message")
 print(''.join(deciphertextlist))
 if(Message==data):
     print('message==data hence signature and data is accepted')
